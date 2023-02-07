@@ -7,7 +7,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import ErrorBoundary from "components/errorBundary";
-import Suspense from "components/suspense";
+import SuspenseLayout from "./layout/suspense.layout";
 const Auth = React.lazy(() => import("pages/auth"));
 const Home = React.lazy(() => import("pages/home"));
 
@@ -19,9 +19,9 @@ export default function App() {
           <Route
             errorElement={<ErrorBoundary />}
             element={
-              <Suspense>
+              <SuspenseLayout>
                 <Outlet />
-              </Suspense>
+              </SuspenseLayout>
             }
           >
             <Route element={<Home />} path="/" />
