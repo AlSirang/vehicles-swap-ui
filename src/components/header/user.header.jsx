@@ -1,7 +1,5 @@
-import { Link } from "react-router-dom";
 import NavbarMain from "./main";
 import { Nav } from "react-bootstrap";
-import { ArrowRight } from "react-bootstrap-icons";
 
 export default function AuthHeader() {
   return (
