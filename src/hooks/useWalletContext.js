@@ -1,12 +1,14 @@
-import { useLayoutEffect } from "react";
 import { ethers } from "ethers";
-import { loadWeb3Packages, WalletUserContext } from "src/context";
+import { WalletUserContext } from "src/context";
 import { ACCEPTED_CHAIN_ID } from "src/utils/constants";
 
 export const useWalletContext = () => {
   const { dispatch, state } = WalletUserContext();
 
-  const { isWalletConnected, web3Modal } = state;
+  const {
+    isWalletConnected, //provider,
+    web3Modal,
+  } = state;
 
   const getNetworkInfo = async (provider) => {
     if (!provider) return;
@@ -50,21 +52,32 @@ export const useWalletContext = () => {
     // on wallet connect success get network info
     getNetworkInfo(provider);
   };
-  return { getNetworkInfo, walletConnect };
-};
 
-// loads web packages
-export const useInitializePackages = () => {
-  const { dispatch } = WalletUserContext();
+  // const updateSinger = async () => {
+  //   try {
+  //     if (!provider) return;
+  //     const ethersProvider = new ethers.providers.Web3Provider(provider);
+  //     const signer = ethersProvider.getSigner();
+  //     const account = await signer.getAddress();
+  //     dispatch({
+  //       isWalletConnected: true,
+  //       account,
+  //       signer,
+  //     });
+  //   } catch (err) {}
+  // };
 
-  useLayoutEffect(() => {
-    console.log("heheh");
-
-    loadWeb3Packages().then((web3Modal) => {
-      dispatch({
-        web3Modal,
-        web3PackagesLoaded: true,
-      });
+  /**
+   * @dev clear cached provider and resets account and wallet connect status.
+   */
+  const disconnectWallet = async () => {
+    await web3Modal.clearCachedProvider();
+    localStorage.removeItem("WEB3_CONNECT_CACHED_PROVIDER");
+    dispatch({
+      account: null,
+      isWalletConnected: false,
     });
-  }, [dispatch]);
+  };
+
+  return { disconnectWallet, getNetworkInfo, walletConnect };
 };

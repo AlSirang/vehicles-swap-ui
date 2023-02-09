@@ -2,10 +2,11 @@ import Header from "components/header";
 import React from "react";
 import { Container } from "react-bootstrap";
 import { ArrowClockwise } from "react-bootstrap-icons";
-import { useInitializePackages } from "src/hooks";
+import { useCheckWalletConnection, useInitializePackages } from "src/hooks";
 
 export default function SuspenseLayout({ children }) {
   useInitializePackages();
+  useCheckWalletConnection();
   return (
     <>
       <Header />
