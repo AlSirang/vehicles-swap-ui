@@ -3,7 +3,8 @@
   margin: 0;
 }
 
-a {
+a,
+a.a-no-style {
   text-decoration: none;
   color: #000;
 }
@@ -62,4 +63,14 @@ a.anchor:hover {
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* //////////////////////////////////////////////////////////////// */
+
+#WEB3_CONNECT_MODAL_ID div {
+  z-index: 1500;
+}
+
+.dropdown-toggle::after {
+  all: unset;
 }

@@ -3,6 +3,7 @@ import { Button, Nav, NavDropdown } from "react-bootstrap";
 import { Wallet } from "react-bootstrap-icons";
 import { shortenAddress } from "src/utils/constants";
 import { useWalletContext } from "src/hooks";
+import { Link } from "react-router-dom";
 
 export default function AuthHeader() {
   const { disconnectWallet } = useWalletContext();
@@ -19,7 +20,7 @@ export default function AuthHeader() {
           style={{ maxHeight: "100px" }}
           navbarScroll
         >
-          {/* TODO: add links */}
+          <Link to="/register-vehicle">Add Vehicle</Link>
         </Nav>
 
         <NavDropdown
@@ -36,7 +37,11 @@ export default function AuthHeader() {
           }
           id="basic-nav-dropdown"
         >
-          <NavDropdown.Item onClick={onDisconnect}>Dashboard</NavDropdown.Item>
+          <NavDropdown.Item>
+            <Link to="/dashboard" className="a-no-style">
+              Dashboard
+            </Link>
+          </NavDropdown.Item>
           <hr className="my-1" />
           <NavDropdown.Item onClick={onDisconnect}>Sign Out</NavDropdown.Item>
         </NavDropdown>
