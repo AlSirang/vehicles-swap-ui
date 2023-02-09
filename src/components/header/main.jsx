@@ -15,7 +15,7 @@ export default function NavbarMain({ children }) {
         </Container>
       </Navbar>
 
-      <div style={{ marginTop: 60 }} />
+      <div style={{ paddingTop: 60 }} />
     </>
   );
 }
