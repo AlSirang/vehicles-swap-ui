@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function NavbarMain({ children }) {
   return (
     <>
-      <Navbar bg="light" expand="lg" style={{ height: 60 }}>
+      <Navbar bg="light" expand="lg" style={{ minHeight: 60 }} fixed="top">
         <Container>
           <Link to="/">
             <Navbar.Brand role="h2">Vehicles Swap</Navbar.Brand>
@@ -14,6 +14,8 @@ export default function NavbarMain({ children }) {
           <Navbar.Collapse id="navbarScroll">{children}</Navbar.Collapse>
         </Container>
       </Navbar>
+
+      <div style={{ marginTop: 60 }} />
     </>
   );
 }
