@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useReducer } from "react";
 
 const initialState = {
+  isWalletStatusSynced: false,
   account: null,
   isWalletConnected: false,
   connectedChainId: null,

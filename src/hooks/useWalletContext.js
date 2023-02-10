@@ -43,6 +43,7 @@ export const useWalletContext = () => {
 
     dispatch({
       isWalletConnected: true,
+      isWalletStatusSynced: true,
       account,
       signer,
       provider,

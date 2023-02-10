@@ -1,16 +1,22 @@
-import NavbarMain from "./main";
+import { Link, useNavigate } from "react-router-dom";
 import { Button, Nav, NavDropdown } from "react-bootstrap";
 import { Wallet } from "react-bootstrap-icons";
 import { shortenAddress } from "src/utils/constants";
 import { useWalletContext } from "src/hooks";
-import { Link } from "react-router-dom";
+import NavbarMain from "./main";
 
 export default function AuthHeader() {
+  const navigation = useNavigate();
+
   const { disconnectWallet } = useWalletContext();
+
   const onDisconnect = () => {
     try {
+      navigation("/");
       disconnectWallet();
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <>

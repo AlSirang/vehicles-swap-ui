@@ -8,16 +8,21 @@ export const useCheckWalletConnection = () => {
 
   const { walletConnect } = useWalletContext();
 
-  const { state } = WalletUserContext();
+  const { dispatch, state } = WalletUserContext();
 
   const { web3PackagesLoaded } = state;
 
   useLayoutEffect(() => {
-    const isConnected = localStorage.getItem("WEB3_CONNECT_CACHED_PROVIDER");
-    if (web3PackagesLoaded && isConnected && !hasBeenChecked.current) {
-      walletConnect();
-      hasBeenChecked.current = true;
-    }
+    (() => {
+      const isConnected = localStorage.getItem("WEB3_CONNECT_CACHED_PROVIDER");
+
+      if (!isConnected) return dispatch({ isWalletStatusSynced: true });
+      if (web3PackagesLoaded && !hasBeenChecked.current) {
+        walletConnect();
+        hasBeenChecked.current = true;
+      }
+    })();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [web3PackagesLoaded]);
 };
