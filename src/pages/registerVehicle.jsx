@@ -6,21 +6,50 @@ import { contractConfigs } from "src/utils/contract.configs";
 
 export default function RegisterVechicle() {
   const { state } = WalletUserContext();
-  const { signer } = state;
+  const { account, signer } = state;
 
-  const onRegister = (event) => {
+  const onRegister = async (event) => {
     event.preventDefault();
 
     try {
       const data = new FormData(event.currentTarget);
-      console.log(data);
+
+      const payload = [
+        0,
+        account,
+        data.get("make"),
+        data.get("model"),
+        data.get("year"),
+        data.get("value"),
+        data.get("VIN"),
+        data.get("owner"),
+        data.get("mileage"),
+        data.get("exteriorColor"),
+        data.get("interiorColor"),
+        data.get("arrisCode"),
+        data.get("roofLoad"),
+        data.get("accelerationTime"),
+        data.get("bodyType"),
+        data.get("registered"),
+        data.get("wheelConfiguration"),
+        data.get("seatingCapacity"),
+        data.get("steeringPosition"),
+        data.get("location"),
+        data.get("damage"),
+      ];
 
       const contractInstance = new ethers.Contract(
-        contractConfigs.abi,
         contractConfigs.address,
+        contractConfigs.abi,
         signer
       );
-    } catch (err) {}
+
+      const tx = await contractInstance.registerVehicle(payload);
+      const reciept = await tx.wait();
+      console.log(reciept);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -37,12 +66,22 @@ export default function RegisterVechicle() {
           <div className="row">
             <Form.Group className="mb-3 col-md-6" controlId="make">
               <Form.Label>Car Make</Form.Label>
-              <Form.Control type="text" placeholder="Car Make" required />
+              <Form.Control
+                type="text"
+                placeholder="Car Make"
+                name="make"
+                autoComplete="off"
+              />
             </Form.Group>
 
             <Form.Group className="mb-3 col-md-6" controlId="model">
               <Form.Label>Car Model</Form.Label>
-              <Form.Control type="text" placeholder="Car Modle" required />
+              <Form.Control
+                type="text"
+                placeholder="Car Modle"
+                name="model"
+                autoComplete="off"
+              />
             </Form.Group>
           </div>
 
@@ -50,19 +89,34 @@ export default function RegisterVechicle() {
           <div className="row">
             <Form.Group className="mb-3 col-md-6" controlId="year">
               <Form.Label>Car Year</Form.Label>
-              <Form.Control type="text" placeholder="Car Year" required />
+              <Form.Control
+                type="text"
+                placeholder="Car Year"
+                name="year"
+                autoComplete="off"
+              />
             </Form.Group>
 
             <Form.Group className="mb-3 col-md-6" controlId="Location">
               <Form.Label>Car Location</Form.Label>
-              <Form.Control type="text" placeholder="Car Location" required />
+              <Form.Control
+                type="text"
+                placeholder="Car Location"
+                name="location"
+                autoComplete="off"
+              />
             </Form.Group>
           </div>
           {/********************************************************************/}
           <div className="row">
             <Form.Group className="mb-3 col-12" controlId="registered">
               <Form.Label>Date first registered</Form.Label>
-              <Form.Control type="date" placeholder="Car Year" required />
+              <Form.Control
+                type="date"
+                placeholder="Car Year"
+                name="registered"
+                autoComplete="off"
+              />
             </Form.Group>
           </div>
 
@@ -74,13 +128,19 @@ export default function RegisterVechicle() {
               <Form.Control
                 type="text"
                 placeholder="Estimated Value"
-                required
+                name="value"
+                autoComplete="off"
               />
             </Form.Group>
 
             <Form.Group className="mb-3 col-md-6" controlId="owner">
               <Form.Label>Verified Owner</Form.Label>
-              <Form.Control type="text" placeholder="Verified Owner" required />
+              <Form.Control
+                type="text"
+                placeholder="Verified Owner"
+                name="owner"
+                autoComplete="off"
+              />
             </Form.Group>
           </div>
           {/********************************************************************/}
@@ -88,12 +148,22 @@ export default function RegisterVechicle() {
           <div className="row">
             <Form.Group className="mb-3 col-md-6" controlId="VIN">
               <Form.Label>VIN</Form.Label>
-              <Form.Control type="text" placeholder="VIN" required />
+              <Form.Control
+                type="text"
+                placeholder="VIN"
+                name="VIN"
+                autoComplete="off"
+              />
             </Form.Group>
 
             <Form.Group className="mb-3 col-md-6" controlId="mileage">
               <Form.Label>Mileage</Form.Label>
-              <Form.Control type="text" placeholder="Mileage" required />
+              <Form.Control
+                type="text"
+                placeholder="Mileage"
+                name="mileage"
+                autoComplete="off"
+              />
             </Form.Group>
           </div>
           {/********************************************************************/}
@@ -101,12 +171,22 @@ export default function RegisterVechicle() {
           <div className="row">
             <Form.Group className="mb-3 col-md-6" controlId="exteriorColor">
               <Form.Label>Exterior Color</Form.Label>
-              <Form.Control type="text" placeholder="Exterior Color" required />
+              <Form.Control
+                type="text"
+                placeholder="Exterior Color"
+                name="exteriorColor"
+                autoComplete="off"
+              />
             </Form.Group>
 
             <Form.Group className="mb-3 col-md-6" controlId="interiorColor">
               <Form.Label>Interior Color</Form.Label>
-              <Form.Control type="text" placeholder="Interior Color" required />
+              <Form.Control
+                type="text"
+                placeholder="Interior Color"
+                name="interiorColor"
+                autoComplete="off"
+              />
             </Form.Group>
           </div>
           {/********************************************************************/}
@@ -114,12 +194,22 @@ export default function RegisterVechicle() {
           <div className="row">
             <Form.Group className="mb-3 col-md-6" controlId="arrisCode">
               <Form.Label>Arris Code</Form.Label>
-              <Form.Control type="text" placeholder="Arris Code" required />
+              <Form.Control
+                type="text"
+                placeholder="Arris Code"
+                name="arrisCode"
+                autoComplete="off"
+              />
             </Form.Group>
 
-            <Form.Group className="mb-3 col-md-6" controlId="roofload">
+            <Form.Group className="mb-3 col-md-6" controlId="roofLoad">
               <Form.Label>Roof Load</Form.Label>
-              <Form.Control type="text" placeholder="Roof Load" required />
+              <Form.Control
+                type="text"
+                placeholder="Roof Load"
+                name="roofLoad"
+                autoComplete="off"
+              />
             </Form.Group>
           </div>
           {/********************************************************************/}
@@ -129,13 +219,19 @@ export default function RegisterVechicle() {
               <Form.Control
                 type="text"
                 placeholder="Acceleration Time"
-                required
+                name="accelerationTime"
+                autoComplete="off"
               />
             </Form.Group>
 
             <Form.Group className="mb-3 col-md-6" controlId="bodyType">
               <Form.Label>Body type</Form.Label>
-              <Form.Control type="text" placeholder="Body type" required />
+              <Form.Control
+                type="text"
+                placeholder="Body type"
+                name="bodyType"
+                autoComplete="off"
+              />
             </Form.Group>
           </div>
           {/********************************************************************/}
@@ -148,7 +244,8 @@ export default function RegisterVechicle() {
               <Form.Control
                 type="text"
                 placeholder="Drive Wheel configuration"
-                required
+                name="wheelConfiguration"
+                autoComplete="off"
               />
             </Form.Group>
 
@@ -157,7 +254,8 @@ export default function RegisterVechicle() {
               <Form.Control
                 type="text"
                 placeholder="Known vehicle damage"
-                required
+                name="damage"
+                autoComplete="off"
               />
             </Form.Group>
           </div>
@@ -168,7 +266,8 @@ export default function RegisterVechicle() {
               <Form.Control
                 type="text"
                 placeholder="Seating capacity"
-                required
+                name="seatingCapacity"
+                autoComplete="off"
               />
             </Form.Group>
 
@@ -177,7 +276,8 @@ export default function RegisterVechicle() {
               <Form.Control
                 type="text"
                 placeholder="Steering position"
-                required
+                name="steeringPosition"
+                autoComplete="off"
               />
             </Form.Group>
           </div>

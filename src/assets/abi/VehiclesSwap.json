@@ -1,0 +1,476 @@
+[
+  {
+    "inputs": [],
+    "name": "OnlyOwnerOf",
+    "type": "error"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "previousOwner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnershipTransferred",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "vehicleIndex",
+        "type": "uint256"
+      }
+    ],
+    "name": "RegisterdVehicle",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "vehicleIndex",
+        "type": "uint256"
+      }
+    ],
+    "name": "RemovedVehicle",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "index",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "ownerOf",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "make",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "model",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "year",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "value",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "VIN",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "verifiedOwner",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "mileage",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "exteriorColor",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "interiorColor",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "arrisCode",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "roofLoad",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "accelerationTime",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "bodyType",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "firstRegisteredDate",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "driveWheelConfiguration",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "seatingCapacity",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "steeringPosition",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "carLocation",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "knownDamage",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct VehiclesSwap.Vehicle",
+        "name": "_vehicle",
+        "type": "tuple"
+      }
+    ],
+    "name": "modifyVehicleInfo",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "owner",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "index",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "ownerOf",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "make",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "model",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "year",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "value",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "VIN",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "verifiedOwner",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "mileage",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "exteriorColor",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "interiorColor",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "arrisCode",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "roofLoad",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "accelerationTime",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "bodyType",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "firstRegisteredDate",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "driveWheelConfiguration",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "seatingCapacity",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "steeringPosition",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "carLocation",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "knownDamage",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct VehiclesSwap.Vehicle",
+        "name": "_vehicle",
+        "type": "tuple"
+      }
+    ],
+    "name": "registerVehicle",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "vehicleIndex",
+        "type": "uint256"
+      }
+    ],
+    "name": "removeVehicleInfo",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "renounceOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "transferOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_owner",
+        "type": "address"
+      }
+    ],
+    "name": "vehiclesOf",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "index",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "ownerOf",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "make",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "model",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "year",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "value",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "VIN",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "verifiedOwner",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "mileage",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "exteriorColor",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "interiorColor",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "arrisCode",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "roofLoad",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "accelerationTime",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "bodyType",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "firstRegisteredDate",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "driveWheelConfiguration",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "seatingCapacity",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "steeringPosition",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "carLocation",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "knownDamage",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct VehiclesSwap.Vehicle[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]
