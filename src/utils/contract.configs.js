@@ -1,4 +1,4 @@
 export const contractConfigs = {
   abi: require("assets/abi/VehiclesSwap.json"),
-  address: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+  address: "0xcDbecC7F8C04D6C0dA4DfEFdcDC0B26Cb6b4e445",
 };

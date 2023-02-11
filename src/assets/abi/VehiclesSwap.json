@@ -195,6 +195,19 @@
     "type": "function"
   },
   {
+    "inputs": [],
+    "name": "owners",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [
       {
         "components": [
