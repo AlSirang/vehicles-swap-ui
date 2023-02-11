@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { Button, Nav, NavDropdown } from "react-bootstrap";
+import { Button, Nav } from "react-bootstrap";
 import { Wallet } from "react-bootstrap-icons";
 import { shortenAddress } from "src/utils/constants";
 import { useWalletContext } from "src/hooks";
@@ -22,35 +22,27 @@ export default function AuthHeader() {
     <>
       <NavbarMain>
         <Nav
-          className="me-auto my-2 my-lg-0"
+          className="me-auto my-2 my-lg-0 gap-4"
           style={{ maxHeight: "100px" }}
           navbarScroll
         >
           <Link to="/register-vehicle">Add Vehicle</Link>
+          <Link to="/dashboard">Dashboard</Link>
         </Nav>
 
-        <NavDropdown
-          title={
-            <>
-              <Button
-                variant="outline-secondary"
-                className="d-flex align-items-center justify-content-center gap-2"
-              >
-                {shortenAddress("0x008eBFc38A0260187057bA5Bc26D37dc797e791f")}
-                <Wallet />
-              </Button>
-            </>
-          }
-          id="basic-nav-dropdown"
-        >
-          <NavDropdown.Item>
-            <Link to="/dashboard" className="a-no-style">
-              Dashboard
-            </Link>
-          </NavDropdown.Item>
-          <hr className="my-1" />
-          <NavDropdown.Item onClick={onDisconnect}>Sign Out</NavDropdown.Item>
-        </NavDropdown>
+        <div className="d-flex align-items-center justify-content-center gap-2 ">
+          <span>
+            {shortenAddress("0x008eBFc38A0260187057bA5Bc26D37dc797e791f")}
+          </span>
+          <Button
+            onClick={onDisconnect}
+            className="d-flex align-items-center justify-content-center gap-2"
+            variant="outline-secondary"
+          >
+            Sign Out&nbsp;
+            <Wallet />
+          </Button>
+        </div>
       </NavbarMain>
     </>
   );
