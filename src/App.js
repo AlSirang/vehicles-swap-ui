@@ -12,6 +12,8 @@ import { WalletContextProvider } from "./context/wallet";
 const Auth = React.lazy(() => import("pages/auth"));
 const Home = React.lazy(() => import("pages/home"));
 const RegisterVehicle = React.lazy(() => import("pages/registerVehicle"));
+const Dashboard = React.lazy(() => import("pages/dashobard"));
+const ModifyVehicleInfo = React.lazy(() => import("pages/modifyVehicleInfo"));
 
 export default function App() {
   return (
@@ -30,6 +32,11 @@ export default function App() {
               <Route element={<Home />} path="/" />
               <Route element={<Auth />} path="/auth" />
               <Route element={<RegisterVehicle />} path="/register-vehicle" />
+              <Route element={<Dashboard />} path="/dashboard/:wallet" />
+              <Route
+                element={<ModifyVehicleInfo />}
+                path="/vehicleInfo/:wallet/:id"
+              />
             </Route>
           )
         )}

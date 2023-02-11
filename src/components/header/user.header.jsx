@@ -4,9 +4,12 @@ import { Wallet } from "react-bootstrap-icons";
 import { shortenAddress } from "src/utils/constants";
 import { useWalletContext } from "src/hooks";
 import NavbarMain from "./main";
+import { WalletUserContext } from "src/context";
 
 export default function AuthHeader() {
   const navigation = useNavigate();
+  const { state } = WalletUserContext();
+  const { account } = state;
 
   const { disconnectWallet } = useWalletContext();
 
@@ -27,13 +30,11 @@ export default function AuthHeader() {
           navbarScroll
         >
           <Link to="/register-vehicle">Add Vehicle</Link>
-          <Link to="/dashboard">Dashboard</Link>
+          <Link to={`/dashboard/${account}`}>Dashboard</Link>
         </Nav>
 
         <div className="d-flex align-items-center justify-content-center gap-2 ">
-          <span>
-            {shortenAddress("0x008eBFc38A0260187057bA5Bc26D37dc797e791f")}
-          </span>
+          <span>{shortenAddress(account)}</span>
           <Button
             onClick={onDisconnect}
             className="d-flex align-items-center justify-content-center gap-2"

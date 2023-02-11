@@ -1,14 +1,8 @@
 import VehicleInfo from "components/vehiclesInfo";
 import { useEffect, useReducer } from "react";
-import { loadData } from "./utils";
+import { initialState, loadData } from "./utils";
 import "src/styles/home.css";
 import { Loading } from "components/loading";
-
-const initialState = {
-  vehiclesOf: {},
-  isLoading: false,
-  error: null,
-};
 
 export default function Home() {
   const [{ error, isLoading, vehiclesOf }, dispatch] = useReducer(
@@ -35,9 +29,14 @@ export default function Home() {
       {isLoading && <Loading />}
       {!isLoading && Boolean(error) && <h3>{error}</h3>}
 
-      {Object.keys(vehiclesOf).map((key) => (
-        <VehicleInfo key={key} wallet={key} vehiclesOf={vehiclesOf[key]} />
-      ))}
+      {Object.keys(vehiclesOf).map((key) => {
+        if (!isLoading && vehiclesOf[key].length > 0)
+          return (
+            <VehicleInfo key={key} wallet={key} vehiclesOf={vehiclesOf[key]} />
+          );
+
+        return null;
+      })}
     </>
   );
 }

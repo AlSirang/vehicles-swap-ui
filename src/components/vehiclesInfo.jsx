@@ -1,10 +1,16 @@
 import { Table } from "react-bootstrap";
+import { PenFill } from "react-bootstrap-icons";
+import { useNavigate } from "react-router-dom";
 import { shortenAddress } from "src/utils/constants";
 
-export default function VehicleInfo({ wallet = "", vehiclesOf = [] }) {
+export default function VehicleInfo({
+  wallet = "",
+  vehiclesOf = [],
+  clickable = false,
+}) {
   return (
     <div className="mb-5">
-      <h3>Owner ({shortenAddress(wallet)})</h3>
+      {wallet && <h3>Owner ({shortenAddress(wallet)})</h3>}
       <Table responsive striped bordered className="table-main">
         <thead className="table-head">
           <tr>
@@ -27,12 +33,14 @@ export default function VehicleInfo({ wallet = "", vehiclesOf = [] }) {
             <th>Known vehicle damage</th>
             <th>Seating capacity</th>
             <th>Steering position</th>
+
+            {clickable && <th>Action</th>}
           </tr>
         </thead>
 
         <tbody>
           {vehiclesOf.map((props) => (
-            <TableRow key={props.index} {...props} />
+            <TableRow key={props.index} {...props} clickable={clickable} />
           ))}
         </tbody>
       </Table>
@@ -61,7 +69,15 @@ const TableRow = (props) => {
     value,
     verifiedOwner,
     year,
+    ownerOf,
+    index,
+    clickable,
   } = props;
+
+  const navigate = useNavigate();
+  const onRowClick = () => {
+    navigate(`/vehicleInfo/${ownerOf}/${index}`);
+  };
   return (
     <tr>
       <td>{make}</td>
@@ -83,6 +99,17 @@ const TableRow = (props) => {
       <td>{knownDamage}</td>
       <td>{seatingCapacity}</td>
       <td>{steeringPosition}</td>
+
+      {clickable && (
+        <th
+          onClick={onRowClick}
+          style={{
+            cursor: "pointer",
+          }}
+        >
+          <PenFill />
+        </th>
+      )}
     </tr>
   );
 };

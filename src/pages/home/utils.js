@@ -1,4 +1,11 @@
+import { ethers } from "ethers";
 import { getContractInstance, getRpcProvider } from "src/utils/utils.dapp";
+
+export const initialState = {
+  vehiclesOf: {},
+  isLoading: false,
+  error: null,
+};
 
 export const loadData = async () => {
   try {
@@ -11,7 +18,9 @@ export const loadData = async () => {
 
     const vechiclesInfo = {};
     response.forEach((rawInfo, i) => {
-      vechiclesInfo[[owners[i]]] = rawInfo;
+      vechiclesInfo[[owners[i]]] = rawInfo.filter(
+        ({ ownerOf }) => ownerOf !== ethers.constants.AddressZero
+      );
     });
     return vechiclesInfo;
   } catch (err) {
