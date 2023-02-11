@@ -1,8 +1,7 @@
-import { ethers } from "ethers";
 import { Button, Form } from "react-bootstrap";
 import { WalletUserContext } from "src/context";
 import AuthLayout from "src/layout/auth.layout";
-import { contractConfigs } from "src/utils/contract.configs";
+import { getContractInstance } from "src/utils/utils.dapp";
 
 export default function RegisterVechicle() {
   const { state } = WalletUserContext();
@@ -38,12 +37,7 @@ export default function RegisterVechicle() {
         data.get("damage"),
       ];
 
-      const contractInstance = new ethers.Contract(
-        contractConfigs.address,
-        contractConfigs.abi,
-        signer
-      );
-
+      const contractInstance = getContractInstance(signer);
       const tx = await contractInstance.registerVehicle(payload);
       const reciept = await tx.wait();
       console.log(reciept);
@@ -90,31 +84,31 @@ export default function RegisterVechicle() {
             <Form.Group className="mb-3 col-md-6" controlId="year">
               <Form.Label>Car Year</Form.Label>
               <Form.Control
-                type="text"
+                type="date"
                 placeholder="Car Year"
                 name="year"
                 autoComplete="off"
               />
             </Form.Group>
 
-            <Form.Group className="mb-3 col-md-6" controlId="Location">
-              <Form.Label>Car Location</Form.Label>
+            <Form.Group className="mb-3 col-md-6" controlId="registered">
+              <Form.Label>Date first registered</Form.Label>
               <Form.Control
-                type="text"
-                placeholder="Car Location"
-                name="location"
+                type="date"
+                placeholder="Car Year"
+                name="registered"
                 autoComplete="off"
               />
             </Form.Group>
           </div>
           {/********************************************************************/}
           <div className="row">
-            <Form.Group className="mb-3 col-12" controlId="registered">
-              <Form.Label>Date first registered</Form.Label>
+            <Form.Group className="mb-3 col-12" controlId="Location">
+              <Form.Label>Car Location</Form.Label>
               <Form.Control
-                type="date"
-                placeholder="Car Year"
-                name="registered"
+                type="text"
+                placeholder="Car Location"
+                name="location"
                 autoComplete="off"
               />
             </Form.Group>
@@ -126,7 +120,8 @@ export default function RegisterVechicle() {
             <Form.Group className="mb-3 col-md-6" controlId="value">
               <Form.Label>Estimated Value</Form.Label>
               <Form.Control
-                type="text"
+                type="number"
+                step="any"
                 placeholder="Estimated Value"
                 name="value"
                 autoComplete="off"
@@ -159,7 +154,8 @@ export default function RegisterVechicle() {
             <Form.Group className="mb-3 col-md-6" controlId="mileage">
               <Form.Label>Mileage</Form.Label>
               <Form.Control
-                type="text"
+                type="number"
+                step="any"
                 placeholder="Mileage"
                 name="mileage"
                 autoComplete="off"
