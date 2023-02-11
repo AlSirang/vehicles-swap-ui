@@ -1,7 +1,7 @@
-import Header from "components/header";
 import React from "react";
 import { Container } from "react-bootstrap";
-import { ArrowClockwise } from "react-bootstrap-icons";
+import Header from "components/header";
+import { Loading } from "components/loading";
 import { useCheckWalletConnection, useInitializePackages } from "src/hooks";
 
 export default function SuspenseLayout({ children }) {
@@ -16,17 +16,5 @@ export default function SuspenseLayout({ children }) {
         </Container>
       </React.Suspense>
     </>
-  );
-}
-
-function Loading() {
-  return (
-    <div
-      className="d-flex flex-column justify-content-center align-items-center"
-      style={{ height: "90vh" }}
-    >
-      <ArrowClockwise className="loading-animaiton" size="60" />
-      <h4>Loading...</h4>
-    </div>
   );
 }
