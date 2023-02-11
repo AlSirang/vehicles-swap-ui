@@ -7,7 +7,7 @@ export default function NavbarMain({ children }) {
       <Navbar bg="light" expand="lg" style={{ minHeight: 60 }} fixed="top">
         <Container>
           <Link to="/">
-            <Navbar.Brand role="h2">Vehicles Swap</Navbar.Brand>
+            <Navbar.Brand role="h2">TitleBlock</Navbar.Brand>
           </Link>
 
           <Navbar.Toggle aria-controls="navbarScroll" />

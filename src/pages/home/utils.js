@@ -24,6 +24,6 @@ export const loadData = async () => {
     });
     return vechiclesInfo;
   } catch (err) {
-    console.log(err);
+    throw err;
   }
 };

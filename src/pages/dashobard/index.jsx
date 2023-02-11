@@ -17,7 +17,9 @@ export default function Dashboard() {
       loadData(wallet)
         .then((vehiclesOf) => {
           dispatch({ vehiclesOf });
-          dispatch({ error: "No Vehicles Registered" });
+
+          if (vehiclesOf.length <= 0)
+            dispatch({ error: "No Vehicles Registered" });
         })
         .catch((err) => {
           dispatch({ error: err.message || err });
@@ -33,7 +35,10 @@ export default function Dashboard() {
       {!isLoading && Boolean(error) && <h3>{error}</h3>}
 
       {!isLoading && vehiclesOf.length > 0 && (
-        <VehicleInfo vehiclesOf={vehiclesOf} clickable />
+        <>
+          <h3>My Registered Vehicles</h3>
+          <VehicleInfo vehiclesOf={vehiclesOf} clickable />
+        </>
       )}
     </>
   );

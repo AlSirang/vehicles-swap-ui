@@ -15,6 +15,6 @@ export const loadData = async (owner) => {
       ({ ownerOf }) => ownerOf !== ethers.constants.AddressZero
     );
   } catch (err) {
-    console.log(err);
+    throw err;
   }
 };
