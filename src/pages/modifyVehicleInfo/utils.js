@@ -24,4 +24,6 @@ export const initialState = {
   },
   isLoading: false,
   error: null,
+  modalText: null,
+  txStatus: null,
 };

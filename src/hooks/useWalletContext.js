@@ -5,10 +5,7 @@ import { ACCEPTED_CHAIN_ID } from "src/utils/constants";
 export const useWalletContext = () => {
   const { dispatch, state } = WalletUserContext();
 
-  const {
-    isWalletConnected, //provider,
-    web3Modal,
-  } = state;
+  const { isWalletConnected, provider, web3Modal } = state;
 
   const getNetworkInfo = async (provider) => {
     if (!provider) return;
@@ -54,19 +51,19 @@ export const useWalletContext = () => {
     getNetworkInfo(provider);
   };
 
-  // const updateSinger = async () => {
-  //   try {
-  //     if (!provider) return;
-  //     const ethersProvider = new ethers.providers.Web3Provider(provider);
-  //     const signer = ethersProvider.getSigner();
-  //     const account = await signer.getAddress();
-  //     dispatch({
-  //       isWalletConnected: true,
-  //       account,
-  //       signer,
-  //     });
-  //   } catch (err) {}
-  // };
+  const updateSinger = async () => {
+    try {
+      if (!provider) return;
+      const ethersProvider = new ethers.providers.Web3Provider(provider);
+      const signer = ethersProvider.getSigner();
+      const account = await signer.getAddress();
+      dispatch({
+        isWalletConnected: true,
+        account,
+        signer,
+      });
+    } catch (err) {}
+  };
 
   /**
    * @dev clear cached provider and resets account and wallet connect status.
@@ -80,5 +77,5 @@ export const useWalletContext = () => {
     });
   };
 
-  return { disconnectWallet, getNetworkInfo, walletConnect };
+  return { disconnectWallet, getNetworkInfo, updateSinger, walletConnect };
 };

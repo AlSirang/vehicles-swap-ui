@@ -14,3 +14,10 @@ export const getContractInstance = (provider) => {
     provider
   );
 };
+
+export const parseTransactionError = (error) => {
+  const {
+    error: { reason },
+  } = { error };
+  return reason || "Transaction failed";
+};
